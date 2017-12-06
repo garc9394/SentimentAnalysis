@@ -1,7 +1,7 @@
 import tweepy
 import json
 import apikeys
-# import pandas as pd
+import pandas as pd
 import numpy as np
 
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -18,13 +18,14 @@ api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 
 # newsOrg = ("@BBCNews", "@CBSNews", "@CNN", "@FoxNews", "@nytimes")
 newsOrg = ("@BBCNews", "@CBSNews")
-sentiment_df = pd.DataFrame([])
+# sentiment_df = pd.DataFrame([])
+x = {}
 
 for org in newsOrg:
-    compound_list = []
+    compound_list = [org.replace("@", "")]
     # oldest_tweet = ""
     # public_tweets = api.search(org, count=5, result_type="recent", max_id=oldest_tweet)
-    public_tweets = api.search(org, count=5)
+    public_tweets = api.search(org, count=5, result_type="recent")
 
     for tweet in public_tweets["statuses"]:
         text = tweet['text']
@@ -33,7 +34,8 @@ for org in newsOrg:
 
         compound_list.append(compound)
 
+    print(compound_list)
         # oldest_tweet = tweet['id_str']
 
 # compound_mean = np.mean(compound_list)
-print(compound_list)
+# print(compound_list)

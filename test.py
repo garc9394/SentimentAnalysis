@@ -14,16 +14,22 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 
-newsOrg = ("@BBCNews", "@CBSNews")
+target_user = '@nytimes'
 
-for org in newsOrg:
-    print(org)
+# Tweet Texts
+tweet_texts = []
 
-# target_user = "@BBCNews"
+# Get all tweets from home feed
+public_tweets = api.user_timeline(target_user)
 
-# public_tweets = api.user_timeline(target_user, count=25)
+# Loop through all tweets
+for tweet in public_tweets:
 
-# print(len(public_tweets))
+    # Print Tweet
+    print(tweet['text'])
 
-# for tweet in public_tweets:
-#     print(json.dumps(tweet, sort_keys=True, indent=4))
+    # Store Tweet in Array
+    tweet_texts.append(tweet['text'])
+
+# Print the Tweet Count
+# print(f'\nTweet Count: {len(tweet_texts)}')
