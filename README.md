@@ -1,4 +1,4 @@
-# Assignment 7: Sentiment Analysis - News Mood
+# Sentiment Analysis - News Mood
 
 1. The scatter plot of the Vader Sentiments for each of the news organziations seem to be random.
 
